@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\Tag;
@@ -90,6 +91,18 @@ class DatabaseSeeder extends Seeder
         $user2->tags()->sync([1, 2]);
 
         // ------------------------------------------
+
+        Comment::create([
+            'the_comment' => 'This is a trial comment',
+            'post_id' => 1,
+            'user_id' => 2,
+        ]);
+
+        Comment::create([
+            'the_comment' => 'This is a trial 2 comment',
+            'post_id' => 2,
+            'user_id' => 1,
+        ]);
 
         // \App\Models\User::factory(10)->create();
     }
