@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Role;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -36,6 +38,16 @@ class DatabaseSeeder extends Seeder
             'slug' => 'education',
         ]);
 
+        Tag::create([
+            'name' => 'php',
+        ]);
+
+        Tag::create([
+            'name' => 'c++',
+        ]);
+
+        // ------------------------------------------
+
         $user = User::create([
             'name' => 'User',
             'email' => 'test@example.com',
@@ -44,15 +56,20 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $user->posts()->create([
+        $user1 = $user->posts()->create([
             'title' => 'title1',
             'slug' => 'slug1',
             'excerpt' => 'excerpt1',
             'body' => 'body1',
+            'user_id' => 1,
             'category_id' => 1,
         ]);
 
-        $user = User::create([
+        $user1->tags()->sync([1, 2]);
+
+        // ------------------------------------------
+
+        $user2 = User::create([
             'name' => 'User2',
             'email' => 'test2@example.com',
             'email_verified_at' => now(),
@@ -61,14 +78,18 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $user->posts()->create([
+        $user2 = $user2->posts()->create([
             'title' => 'title2',
             'slug' => 'slug2',
             'excerpt' => 'excerpt2',
             'body' => 'body2',
+            'user_id' => 2,
             'category_id' => 1,
         ]);
 
+        $user2->tags()->sync([1, 2]);
+
+        // ------------------------------------------
 
         // \App\Models\User::factory(10)->create();
     }
