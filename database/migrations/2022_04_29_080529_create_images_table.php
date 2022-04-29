@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('excerpt');
-            $table->text('body');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id')->constrained();
+            $table->string('name');
+            $table->string('extension');
+            $table->string('path');
+
+            $table->foreignId('imageable_id');
+            $table->string('imageable_type');
+
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('images');
     }
 };

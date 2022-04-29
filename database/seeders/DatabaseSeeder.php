@@ -34,6 +34,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'user',
         ]);
 
+        Role::create([
+            'name' => 'admin',
+        ]);
+
         Category::create([
             'name' => 'Education',
             'slug' => 'education',
@@ -49,7 +53,7 @@ class DatabaseSeeder extends Seeder
 
         // ------------------------------------------
 
-        $user = User::create([
+        $user1 = User::create([
             'name' => 'User',
             'email' => 'test@example.com',
             'email_verified_at' => now(),
@@ -57,7 +61,13 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $user1 = $user->posts()->create([
+        $user1->image()->create([
+            'name' => 'user image',
+            'extension' => 'jpg',
+            'path' => '/image/user_file.jpg',
+        ]);
+
+        $post1 = $user1->posts()->create([
             'title' => 'title1',
             'slug' => 'slug1',
             'excerpt' => 'excerpt1',
@@ -66,7 +76,13 @@ class DatabaseSeeder extends Seeder
             'category_id' => 1,
         ]);
 
-        $user1->tags()->sync([1, 2]);
+        $post1->tags()->sync([1, 2]);
+
+        $post1->image()->create([
+            'name' => 'post image',
+            'extension' => 'jpg',
+            'path' => '/image/random_file.jpg',
+        ]);
 
         // ------------------------------------------
 
