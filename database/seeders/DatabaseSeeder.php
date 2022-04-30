@@ -61,12 +61,6 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $user1->image()->create([
-            'name' => 'user image',
-            'extension' => 'jpg',
-            'path' => '/image/user_file.jpg',
-        ]);
-
         $post1 = $user1->posts()->create([
             'title' => 'title1',
             'slug' => 'slug1',
@@ -79,9 +73,9 @@ class DatabaseSeeder extends Seeder
         $post1->tags()->sync([1, 2]);
 
         $post1->image()->create([
-            'name' => 'post image',
+            'name' => 'user image',
             'extension' => 'jpg',
-            'path' => '/image/random_file.jpg',
+            'path' => 'images/' . mt_rand(1, 5) . '.jpg',
         ]);
 
         // ------------------------------------------
@@ -95,7 +89,7 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $user2 = $user2->posts()->create([
+        $post2 = $user2->posts()->create([
             'title' => 'title2',
             'slug' => 'slug2',
             'excerpt' => 'excerpt2',
@@ -104,7 +98,13 @@ class DatabaseSeeder extends Seeder
             'category_id' => 1,
         ]);
 
-        $user2->tags()->sync([1, 2]);
+        $post2->tags()->sync([1, 2]);
+
+        $post2->image()->create([
+            'name' => 'post image',
+            'extension' => 'jpg',
+            'path' => 'images/' . mt_rand(1, 5) . '.jpg',
+        ]);
 
         // ------------------------------------------
 
