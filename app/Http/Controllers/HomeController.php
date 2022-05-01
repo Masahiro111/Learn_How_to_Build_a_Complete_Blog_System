@@ -15,7 +15,7 @@ class HomeController extends Controller
 
         $posts_data = $posts
             ->withCount('comments')
-            ->get();
+            ->paginate(5);
 
         $recents_data = $posts
             ->latest()
