@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Aboutcontroller;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
@@ -29,9 +30,11 @@ Route::post('/posts/{post:slug}', [PostController::class, 'addComment'])
 
 Route::get('/about', Aboutcontroller::class)->name('about');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/contact', [ContactController::class, 'create'])
+    ->name('contact');
+
+Route::post('/contact', [ContactController::class, 'store'])
+    ->name('contact.store');
 
 
 // Route::get('/dashboard', function () {
