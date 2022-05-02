@@ -22,6 +22,10 @@ Route::get('/', [HomeController::class, 'index'])
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])
     ->name('post.show');
 
+Route::post('/posts/{post:slug}', [PostController::class, 'addComment'])
+    ->name('post.add_comment');
+
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
