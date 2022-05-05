@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary">
+                        <input type="submit" value="Send Message" class="btn btn-primary send-message-btn">
                     </div>
                 </form>
 
@@ -83,4 +83,10 @@
     </div>
 </div>
 
+@endsection
+
+@section('custom_js')
+<script>
+    $(document).on("click", ".send-message-btn")
+</script>
 @endsection
