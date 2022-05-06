@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Aboutcontroller;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +38,11 @@ Route::get('/contact', [ContactController::class, 'create'])
 Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
 
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])
+    ->name('categories.show');
+
+Route::get('/tags/{tag:slug}', [TagController::class, 'show'])
+    ->name('tags.show');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
