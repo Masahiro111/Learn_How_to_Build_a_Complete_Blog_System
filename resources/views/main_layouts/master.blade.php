@@ -283,12 +283,6 @@
 
         @yield('custom_js')
 
-        <script>
-            setTimeout(() => {
-                $(".global-message").fadeOut();
-            }, 5000);
-        </script>
-
     </body>
 
 </html>

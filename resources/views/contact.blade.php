@@ -4,6 +4,8 @@
 
 @section('content')
 
+<div class="alert alert-info global-message info" style="display: none;"></div>
+
 <div class="colorlib-contact">
     <div class="container">
         <div class="row row-pb-md">
@@ -34,7 +36,7 @@
                 <h2>Message Us</h2>
             </div>
             <div class="col-md-6">
-                <form action="{{ route('contact.store') }}" method="POST" onsubmit="return false;">
+                <form action="{{ route('contact.store') }}" method="POST">
                     @csrf
 
                     <div class="row form-group">
@@ -86,7 +88,7 @@
 @endsection
 
 @section('custom_js')
-<script>
+{{-- <script>
     $(document).on("click", ".send-message-btn",(e)=>{
         // console.log( $(this).text());
 
@@ -113,9 +115,11 @@
             processData: false,
             contentType:false,
             success: function(data){
-                console.log(data);
+                if(data.success){
+                    $(".global-message")
+                }
             }
         });
     });
-</script>
+</script> --}}
 @endsection

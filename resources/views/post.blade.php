@@ -3,6 +3,9 @@
 @section('title','MyBlog This is single post')
 
 @section('content')
+
+<div class="alert alert-info global-message info" style="display: none;"></div>
+
 <div class="colorlib-classes">
     <div class="container">
         <div class="row">
