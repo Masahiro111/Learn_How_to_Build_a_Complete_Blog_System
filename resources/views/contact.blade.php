@@ -34,7 +34,7 @@
                 <h2>Message Us</h2>
             </div>
             <div class="col-md-6">
-                <form action="{{ route('contact.store') }}" method="POST">
+                <form action="{{ route('contact.store') }}" method="POST" onsubmit="return false;">
                     @csrf
 
                     <div class="row form-group">
@@ -87,6 +87,35 @@
 
 @section('custom_js')
 <script>
-    $(document).on("click", ".send-message-btn")
+    $(document).on("click", ".send-message-btn",(e)=>{
+        // console.log( $(this).text());
+
+        let first_name = $(this).parents("form").find("input[name='first_name']").val();
+        let last_name = $(this).parents("form").find("input[name='last_name']").val();
+        let email = $(this).parents("form").find("input[name='email']").val();
+        let subject = $(this).parents("form").find("input[name='subject']").val();
+        let message = $(this).parents("form").find("input[name='first_name']").val();
+        let csrf_token = $(this).parents("form").find("input[name='_token']").val();
+
+        let formData = new formData();
+        formData.append("first_name",first_name);
+        formData.append("last_name",last_name);
+        formData.append("email",email);
+        formData.append("subject",subject);
+        formData.append("message",message);
+        formData.append("_token",csrf_token);
+
+        $.ajax({
+            url: "{{ route('contact.store') }}",
+            data:formData,
+            type: 'POST',
+            dataType: 'JSON',
+            processData: false,
+            contentType:false,
+            success: function(data){
+                console.log(data);
+            }
+        });
+    });
 </script>
 @endsection
