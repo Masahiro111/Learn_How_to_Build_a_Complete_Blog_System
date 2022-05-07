@@ -41,7 +41,10 @@ Route::post('/contact', [ContactController::class, 'store'])
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])
     ->name('categories.show');
 
-Route::get('/tags/{tag:slug}', [TagController::class, 'show'])
+Route::get('/categories', [CategoryController::class, 'index'])
+    ->name('categories.index');
+
+Route::get('/tags/{tag:name}', [TagController::class, 'show'])
     ->name('tags.show');
 
 // Route::get('/dashboard', function () {

@@ -38,11 +38,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
         ]);
 
-        Category::create([
-            'name' => 'Education',
-            'slug' => 'education',
-        ]);
-
         Tag::create([
             'name' => 'php',
         ]);
@@ -61,6 +56,12 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
+        Category::create([
+            'name' => 'Education',
+            'slug' => 'education',
+            'user_id' => 1,
+        ]);
+
         $post1 = $user1->posts()->create([
             'title' => 'title1',
             'slug' => 'slug1',
@@ -76,7 +77,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'user image',
             'extension' => 'jpg',
             'path' => 'images/' . mt_rand(1, 5) . '.jpg',
-        ]);
+        ]);git
 
         // ------------------------------------------
 
