@@ -44,7 +44,7 @@
                             <div>
                                 <p class="mb-0 text-secondary">Bounce Rate</p>
                                 <h4 class="my-1 text-success">34.6%</h4>
-                                <p class="mb-0 font-13">-4.5% from last week</p>
+                                <p class="mb-0 font-13">-4.5% from <br> last week</p>
                             </div>
                             <div class="text-white widgets-icons-2 rounded-circle bg-gradient-ohhappiness ms-auto"><i class='bx bxs-bar-chart-alt-2'></i>
                             </div>
