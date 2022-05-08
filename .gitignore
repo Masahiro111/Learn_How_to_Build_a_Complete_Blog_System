@@ -13,3 +13,4 @@ yarn-error.log
 /.idea
 /.vscode
 /public/blog_template
+/public/admin_dashboard_assets
