@@ -21,6 +21,10 @@ return new class extends Migration
             $table->text('body');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
+
+            $table->integer('views')->default(0);
+            $table->string('status')->default('published');
+
             $table->timestamps();
         });
     }
