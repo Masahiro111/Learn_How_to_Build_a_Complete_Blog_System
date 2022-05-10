@@ -20,10 +20,16 @@
                         </h3>
                         <p class="excerpt">{{ $post->excerpt }}</p>
                         <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span>{{ $post->created_at->diffForHumans() }}</a></div>
-                            <div><a href="#"><span class="icon-user2"></span>{{ $post->author->name }}</a></div>
+                            <div>
+                                <a href="#"><span class="icon-calendar"></span>&nbsp;{{ $post->created_at->diffForHumans() }}</a>
+                            </div>
+                            <div>
+                                <a href="#"><span class="icon-user2"></span>&nbsp;{{ $post->author->name }}</a>
+                            </div>
                             <div class="comment-count">
-                                <a href="{{ route('post.show', $post) }}#post-comments"><span class="icon-chat"></span> {{ $post->comments_count }}</a>
+                                <a href="{{ route('post.show', $post) }}#post-comments">
+                                    <span class="icon-chat"></span>&nbsp;{{ $post->comments_count }}
+                                </a>
                             </div>
                         </div>
                     </div>

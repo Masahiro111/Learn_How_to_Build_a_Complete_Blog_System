@@ -14,6 +14,7 @@ class HomeController extends Controller
         $posts = Post::query();
 
         $posts_data = $posts
+            ->latest()
             ->withCount('comments')
             ->paginate(5);
 

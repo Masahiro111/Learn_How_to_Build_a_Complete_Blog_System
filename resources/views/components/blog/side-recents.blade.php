@@ -8,7 +8,7 @@
         <a
            href="{{ route('post.show', $recent) }}"
            class="blog-img"
-           style="background-image: url(' {{ asset('storage/' . $recent->image->path) }}');">
+           style="background-image: url({{ asset($recent->image ? 'storage/' . $recent->image->path : 'storage/placeholders/thumbnail_placeholder.svg' . '')  }});">
         </a>
         <div class="desc">
             <p class="admin"><span>{{$recent->created_at->diffForHumans() }}</span></p>
