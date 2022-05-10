@@ -19,8 +19,13 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('excerpt');
             $table->text('body');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id')->constrained();
+
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->foreignId('category_id')
+                ->constrained();
 
             $table->integer('views')->default(0);
             $table->string('status')->default('published');
