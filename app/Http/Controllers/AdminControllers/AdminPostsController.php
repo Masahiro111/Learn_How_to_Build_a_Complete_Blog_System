@@ -14,7 +14,7 @@ class AdminPostsController extends Controller
         'slug' => 'required|max:200',
         'excerpt' => 'required|max:300',
         'category_id' => 'required|numeric',
-        'thumbnail' => 'required|file|mimes:jpg,png,webp,svg,jpeg|dimensions:max_width=300,max_height=227',
+        'thumbnail' => 'required|file|mimes:jpg,png,webp,svg,jpeg|dimensions:min_width=300,min_height=227',
         'body' => 'required',
     ];
 

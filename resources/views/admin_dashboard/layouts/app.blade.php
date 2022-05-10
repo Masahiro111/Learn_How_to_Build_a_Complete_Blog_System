@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/dark-theme.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/semi-dark.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/header-colors.css') }}" />
-        <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/mystyle.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}" />
 
         <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
     </head>
@@ -59,7 +59,7 @@
         </div>
         <!--end wrapper-->
         <!--start switcher-->
-        <div class="switcher-wrapper">
+        {{-- <div class="switcher-wrapper">
             <div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
             </div>
             <div class="switcher-body">
@@ -152,7 +152,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--end switcher-->
         <!-- Bootstrap JS -->
         <script src="{{ asset('admin_dashboard_assets/js/bootstrap.bundle.min.js') }}"></script>

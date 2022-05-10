@@ -33,7 +33,7 @@
                 <h5 class="card-title">Add New Post</h5>
                 <hr />
 
-                <form action="{{ route('admin.posts.store') }}" method='post' enctype='multipart/form-data'>
+                <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-body mt-4">
@@ -42,16 +42,16 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="mb-3">
                                         <label for="inputProductTitle" class="form-label">Post Title</label>
-                                        <input type="text" value='{{ old("title") }}' name='title' required class="form-control" id="inputProductTitle">
+                                        <input type="text" value="{{ old('title') }}" name="title" required class="form-control" id="inputProductTitle">
 
                                         @error('title')
-                                        <p class='text-danger'>{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="inputProductTitle" class="form-label">Post Slug</label>
-                                        <input type="text" value='{{ old("slug") }}' class="form-control" required name='slug' id="inputProductTitle">
+                                        <input type="text" value="{{ old('slug') }}" class="form-control" required name='slug' id="inputProductTitle">
 
                                         @error('slug')
                                         <p class='text-danger'>{{ $message }}</p>
@@ -93,10 +93,10 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <label for="inputProductDescription" class="form-label">Post Thumbnail</label>
-                                                <input id='thumbnail' required name='thumbnail' id="file" type="file">
+                                                <input id="thumbnail" required name="thumbnail" id="file" type="file">
 
-                                                @error('thumbnail')
-                                                <p class='text-danger'>{{ $message }}</p>
+                                                @error("thumbnail")
+                                                <p class="text-danger">{{ $message }}</p>
                                                 @enderror
 
                                             </div>
@@ -105,14 +105,14 @@
 
                                     <div class="mb-3">
                                         <label for="inputProductDescription" class="form-label">Post Content</label>
-                                        <textarea name='body' id='post_content' class="form-control" id="inputProductDescription" rows="3">{{ old("body") }}</textarea>
+                                        <textarea name="body" id="post_content" class="form-control" id="inputProductDescription" rows="3">{{ old("body") }}</textarea>
 
                                         @error('body')
-                                        <p class='text-danger'>{{ $message }}</p>
+                                        <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
 
-                                    <button class='btn btn-primary' type='submit'>Add Post</button>
+                                    <button class="btn btn-primary" type="submit">Add Post</button>
 
                                 </div>
                             </div>
@@ -148,41 +148,41 @@
             placeholder: $(this).data('placeholder'),
             allowClear: Boolean($(this).data('allow-clear')),
         });
-        tinymce.init({
-            selector: '#post_content',
-            plugins: 'advlist autolink lists link image media charmap print preview hr anchor pagebreak',
-            toolbar_mode: 'floating',
-            height: '500',
-            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr',
-            toolbar_mode: 'floating',
-            image_title: true,
-            automatic_uploads: true,
+        // tinymce.init({
+        //     selector: '#post_content',
+        //     plugins: 'advlist autolink lists link image media charmap print preview hr anchor pagebreak',
+        //     toolbar_mode: 'floating',
+        //     height: '500',
+        //     toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr',
+        //     toolbar_mode: 'floating',
+        //     image_title: true,
+        //     automatic_uploads: true,
             
-            images_upload_handler: function(blobinfo, success, failure)
-            {
-                let formData = new FormData();
-                let _token = $("input[name='_token']").val();
-                let xhr = new XMLHttpRequest();
-                xhr.open('post', "");
-                xhr.onload = () => {
-                    if( xhr.status !== 200 )
-                    {
-                        failure("Http Error: " + xhr.status);
-                        return
-                    }
-                    let json = JSON.parse(xhr.responseText)
-                    if(! json || typeof json.location != 'string')
-                    {
-                        failure("Invalid Json: " + xhr.responseText);
-                        return
-                    }
-                    success( json.location )
-                }
-                formData.append('_token', _token);
-                formData.append('file', blobinfo.blob(), blobinfo.filename());
-                xhr.send( formData );
-            }
-        });
+        //     images_upload_handler: function(blobinfo, success, failure)
+        //     {
+        //         let formData = new FormData();
+        //         let _token = $("input[name='_token']").val();
+        //         let xhr = new XMLHttpRequest();
+        //         xhr.open('post', "");
+        //         xhr.onload = () => {
+        //             if( xhr.status !== 200 )
+        //             {
+        //                 failure("Http Error: " + xhr.status);
+        //                 return
+        //             }
+        //             let json = JSON.parse(xhr.responseText)
+        //             if(! json || typeof json.location != 'string')
+        //             {
+        //                 failure("Invalid Json: " + xhr.responseText);
+        //                 return
+        //             }
+        //             success( json.location )
+        //         }
+        //         formData.append('_token', _token);
+        //         formData.append('file', blobinfo.blob(), blobinfo.filename());
+        //         xhr.send( formData );
+        //     }
+        // });
         setTimeout(() => {
             $(".general-message").fadeOut();
         }, 5000);
