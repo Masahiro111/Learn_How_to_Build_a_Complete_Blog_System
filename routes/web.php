@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Aboutcontroller;
+use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\DashboardController;
 use App\Http\Controllers\CategoryController;
@@ -51,4 +52,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isadmin'])->group(f
         ->name('index');
 
     Route::resource('posts', AdminPostsController::class);
+    Route::resource('categories', AdminCategoriesController::class);
 });
