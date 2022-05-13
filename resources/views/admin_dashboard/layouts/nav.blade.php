@@ -43,20 +43,27 @@
             </a>
 
             <ul>
-                <li> <a href="{{ route('admin.categories.index') }}"><i class="bx bx-right-arrow-alt"></i>All Categories</a>
+                <li>
+                    <a href="{{ route('admin.categories.index') }}"><i class="bx bx-right-arrow-alt"></i>All Categories</a>
                 </li>
-                <li> <a href="{{ route('admin.categories.create') }}"><i class="bx bx-right-arrow-alt"></i>Add New Category</a>
+                <li>
+                    <a href="{{ route('admin.categories.create') }}"><i class="bx bx-right-arrow-alt"></i>Add New Category</a>
                 </li>
             </ul>
         </li>
 
         <li>
-            <a href="{{ route('admin.tags.index') }}"></a>
-            <div class="parent-icon">
-                <i class='bx bx-purchase-tag'></i>
-            </div>
-            <div class="menu-title">Tags</div>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-menu'></i>
+                </div>
+                <div class="menu-title">Tags</div>
             </a>
+
+            <ul>
+                <li>
+                    <a href="{{ route('admin.tags.index') }}"><i class="bx bx-purchase-tag"></i>Tags</a>
+                </li>
+            </ul>
         </li>
 
     </ul>
