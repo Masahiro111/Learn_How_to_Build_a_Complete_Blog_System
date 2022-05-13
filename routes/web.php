@@ -3,6 +3,7 @@
 use App\Http\Controllers\Aboutcontroller;
 use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
+use App\Http\Controllers\AdminControllers\AdminTagsController;
 use App\Http\Controllers\AdminControllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
@@ -51,6 +52,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isadmin'])->group(f
     Route::get('/', [DashboardController::class, 'index'])
         ->name('index');
 
-    Route::resource('posts', AdminPostsController::class);
-    Route::resource('categories', AdminCategoriesController::class);
+    Route::resource('/posts', AdminPostsController::class);
+    Route::resource('/categories', AdminCategoriesController::class);
+
+    Route::resource('/tags', AdminTagsController::class)
+        ->only(['index', 'show', 'destroy']);
 });

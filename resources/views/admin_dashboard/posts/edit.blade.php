@@ -5,6 +5,8 @@
 <link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('admin_dashboard_assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
 
+<link href="{{ asset('admin_dashboard_assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
+
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.0/tinymce.min.js" integrity="sha512-XNYSOn0laKYg55QGFv1r3sIlQWCAyNKjCa+XXF5uliZH+8ohn327Ewr2bpEnssV9Zw3pB3pmVvPQNrnCTRZtCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 
 @endsection
@@ -14,11 +16,11 @@
 <div class="page-wrapper">
     <div class="page-content">
         <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="mb-3 page-breadcrumb d-none d-sm-flex align-items-center">
             <div class="breadcrumb-title pe-3">Posts</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0 p-0">
+                    <ol class="p-0 mb-0 breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Posts</li>
@@ -29,7 +31,7 @@
         <!--end breadcrumb-->
 
         <div class="card">
-            <div class="card-body p-4">
+            <div class="p-4 card-body">
                 <h5 class="card-title">Edit Post: {{ $post->title }}</h5>
                 <hr />
 
@@ -37,10 +39,10 @@
                     @csrf
                     @method('PATCH')
 
-                    <div class="form-body mt-4">
+                    <div class="mt-4 form-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="border border-3 p-4 rounded">
+                                <div class="p-4 border rounded border-3">
                                     <div class="mb-3">
                                         <label for="inputProductTitle" class="form-label">Post Title</label>
                                         <input type="text" value='{{ old("title", $post->title) }}' name='title' required class="form-control" id="inputProductTitle">
@@ -91,6 +93,11 @@
                                     </div>
 
                                     <div class="mb-3">
+                                        <label class="form-label">Post Tags</label>
+                                        <input type="text" class="form-control" value='{{ $tags }}' name='tags' data-role="tagsinput">
+                                    </div>
+
+                                    <div class="mb-3">
                                         <div class='row'>
 
                                             <div class='col-md-8'>
@@ -110,7 +117,7 @@
 
                                             </div>
 
-                                            <div class='col-md-4 text-center'>
+                                            <div class='text-center col-md-4'>
                                                 <img style='width: 100%' src="/storage/{{ $post->image ? $post->image->path : 'placeholders/thumbnail_placeholder.svg' }}" class='img-responsive' alt="Post Thumbnail">
                                             </div>
 
@@ -119,7 +126,7 @@
 
                                     <div class="mb-3">
                                         <label for="inputProductDescription" class="form-label">Post Content</label>
-                                        <textarea name='body' id='post_content' class="form-control" id="inputProductDescription" rows="3">{{ old("body", str_replace('../../../', '/', $post->body) ) }}</textarea>
+                                        <textarea name='body' id='post_content' class="form-control" id="inputProductDescription" rows="3">{{ old("body", str_replace('../../', '../../../', $post->body) ) }}</textarea>
 
                                         @error('body')
                                         <p class='text-danger'>{{ $message }}</p>
@@ -127,19 +134,22 @@
                                     </div>
 
                                     <button class='btn btn-primary' type='submit'>Update Post</button>
+                                    <a
+                                       class='btn btn-danger'
+                                       onclick="event.preventDefault();document.getElementById('delete_post_{{ $post->id }}').submit()"
+                                       href="#">Delete Post</a>
 
-                                    <form action="{{ route('admin.posts.destroy', $post) }}">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type='submit' class='btn btn-danger'>Delete Post</button>
-                                    </form>
 
                                 </div>
                             </div>
 
                         </div>
                     </div>
+                </form>
+
+                <form method='post' id='delete_post_{{ $post->id }}' action="{{ route('admin.posts.destroy', $post) }}">
+                    @csrf
+                    @method('DELETE')
                 </form>
 
             </div>
@@ -155,11 +165,13 @@
 <script src="{{ asset('admin_dashboard_assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js') }}"></script>
 <script src="{{ asset('admin_dashboard_assets/plugins/select2/js/select2.min.js') }}"></script>
 
+<script src="{{ asset('admin_dashboard_assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 <script>
     $(document).ready(function () {
         
         // $('#image-uploadify').imageuploadify();
         
+
         $('.single-select').select2({
             theme: 'bootstrap4',
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
@@ -172,9 +184,12 @@
             placeholder: $(this).data('placeholder'),
             allowClear: Boolean($(this).data('allow-clear')),
         });
+
         setTimeout(() => {
             $(".general-message").fadeOut();
         }, 5000);
+
     });
+
 </script>
 @endsection
