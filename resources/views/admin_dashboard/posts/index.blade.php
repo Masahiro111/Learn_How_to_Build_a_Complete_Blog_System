@@ -5,11 +5,11 @@
 <div class="page-wrapper">
     <div class="page-content">
         <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="mb-3 page-breadcrumb d-none d-sm-flex align-items-center">
             <div class="breadcrumb-title pe-3">Posts</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0 p-0">
+                    <ol class="p-0 mb-0 breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="bx bx-home-alt"></i></a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Posts</li>
@@ -21,11 +21,11 @@
 
         <div class="card">
             <div class="card-body">
-                <div class="d-lg-flex align-items-center mb-4 gap-3">
+                <div class="gap-3 mb-4 d-lg-flex align-items-center">
                     <div class="position-relative">
                         <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
                     </div>
-                    <div class="ms-auto"><a href="{{ route('admin.posts.create') }}" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Post</a></div>
+                    <div class="ms-auto"><a href="{{ route('admin.posts.create') }}" class="mt-2 btn btn-primary radius-30 mt-lg-0"><i class="bx bxs-plus-square"></i>Add New Post</a></div>
                 </div>
                 <div class="table-responsive">
                     <table class="table mb-0">
@@ -62,7 +62,7 @@
 
 
                                 <td>
-                                    <div class="badge rounded-pill @if($post->status === 'published') {{ 'text-info bg-light-info' }} @elseif($post->status === 'draft') {{ 'text-warning bg-light-warning' }} @else {{ 'text-danger bg-light-danger' }} @endif p-2 text-uppercase px-3"><i class='bx bxs-circle align-middle me-1'></i>{{ $post->status }}</div>
+                                    <div class="badge rounded-pill @if($post->status === 'published') {{ 'text-info bg-light-info' }} @elseif($post->status === 'draft') {{ 'text-warning bg-light-warning' }} @else {{ 'text-danger bg-light-danger' }} @endif p-2 text-uppercase px-3"><i class='align-middle bx bxs-circle me-1'></i>{{ $post->status }}</div>
                                 </td>
 
                                 <td>{{ $post->views }}</td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class AdminPostsController extends Controller
@@ -50,6 +51,18 @@ class AdminPostsController extends Controller
                 'path' => $path
             ]);
         }
+
+        $tags = explode(',', $request->input('tags'));
+        $tags_ids = [];
+        foreach ($tags as $tag) {
+            $tag_ob = Tag::create(['name' => trim($tag)]);
+            $tags_ids[] = $tag_ob->id;
+        }
+
+        if (count($tags_ids) > 0) {
+            $post->tags()->sync($tags_ids);
+        }
+
         return redirect()->route('admin.posts.create')->with('success', 'Post has been created.');
     }
 
