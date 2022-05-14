@@ -36,12 +36,6 @@ class AdminCommentsController extends Controller
         return redirect()->route('admin.comments.create')->with('success', 'Comment has been added.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Comment $comment)
     {
         return view('admin_dashboard.comments.edit', [
@@ -50,13 +44,6 @@ class AdminCommentsController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Comment $comment)
     {
         $validated = $request->validate($this->rules);
@@ -64,12 +51,6 @@ class AdminCommentsController extends Controller
         return redirect()->route('admin.comments.edit', $comment)->with('success', 'Comment has been updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Comment $comment)
     {
         $comment->delete();
