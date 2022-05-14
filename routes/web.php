@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Aboutcontroller;
+use App\Http\Controllers\AdminCommentsController;
 use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\AdminTagsController;
@@ -57,4 +58,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isadmin'])->group(f
 
     Route::resource('/tags', AdminTagsController::class)
         ->only(['index', 'show', 'destroy']);
+
+    Route::resource('/comments', AdminCommentsController::class)
+        ->except('show');
 });
