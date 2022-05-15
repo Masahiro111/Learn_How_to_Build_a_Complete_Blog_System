@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminControllers\AdminCategoriesController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
 use App\Http\Controllers\AdminControllers\AdminTagsController;
 use App\Http\Controllers\AdminControllers\DashboardController;
+use App\Http\Controllers\AdminRolesController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -48,7 +49,7 @@ require __DIR__ . '/auth.php';
 
 // Admin Dashboard Routes
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'isadmin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'isadmin', 'check_permissions'])->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])
         ->name('index');
@@ -60,5 +61,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isadmin'])->group(f
         ->only(['index', 'show', 'destroy']);
 
     Route::resource('/comments', AdminCommentsController::class)
+        ->except('show');
+
+    Route::resource('roles', AdminRolesController::class)
         ->except('show');
 });
